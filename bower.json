@@ -1,0 +1,25 @@
+{
+  "name": "js-timezone",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Per Jansson <per.r.jansson@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "~2.11.0",
+    "bootstrap": "~3.3.6",
+    "angular-bootstrap": "~0.14.3",
+    "angular": "~1.4.8"
+  }
+}
