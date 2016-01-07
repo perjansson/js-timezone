@@ -18,16 +18,23 @@
 
   <div ng-controller="TimeController as vm" class="container">
     <form class="form-horizontal" style="margin-top: 20px" ng-submit="vm.submit()">
-      <div class="form-group form-group-lg">
-        <label for="dateInput" class="control-label">Date</label>
-        <input type="date" ng-model="vm.time" class="form-control" id="dateInput">
-      </div>
-      <input type="submit" class="btn btn-lg btn-primary pull-right" value="Send"></input>
+      <p class="input-group">
+        <!--input type="date" ng-model="vm.time" class="form-control" id="dateInput"-->
+        <input type="text"
+          class="form-control"
+          uib-datepicker-popup="yyyy/MM/dd"
+          ng-model="vm.time"
+          is-open="vm.datePicker.opened"
+          datepicker-options="vm.datePicker.options"
+          datepicker-localdate/>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="vm.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </p>
+      <input type="submit" class="btn btn-primary pull-right" value="Send"></input>
     </form>
 
     <div style="margin-top: 100px">
-      <p>Epoch 1452121200000 is Local Time: 2015-01-07 00:00 and GMT/UTC: 2015-01-06 23:00</p>
-      <p>Epoch 1452124800000 is Local Time: 2015-01-07 01:00 and GMT/UTC: 2015-01-07 00:00</p>
       <pre>{{ vm.epoch | json }}</pre>
       <pre>{{ vm.time | json }}</pre>
       <pre>{{ vm.timeZoneOffset() }}</pre>
