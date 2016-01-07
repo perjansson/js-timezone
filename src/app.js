@@ -5,7 +5,7 @@
     .module('jsTimeZoneApp', ['ui.bootstrap'])
 
 
-    .controller('TimeController', function() {
+    .controller('TimeController', function(DateUtils) {
       var vm = this;
 
       vm.datePicker = {
@@ -20,8 +20,9 @@
       };
       vm.epoch = 1452211200000;
       //vm.epoch = 1452124800000;
-      vm.time = new Date();
-      vm.time.setMinutes(vm.time.getMinutes() - vm.time.getTimezoneOffset());
+      vm.time = DateUtils.epochWithoutTimeZoneOffset();
+      //vm.time = new Date();
+      //vm.time.setMinutes(vm.time.getMinutes() - vm.time.getTimezoneOffset());
       //vm.time.setHours(12,0,0,0);
       vm.timeZoneOffset = function() {
         return new Date().getTimezoneOffset();
@@ -33,6 +34,15 @@
 
         console.log(moment(vm.time).valueOf());
         console.log(moment.utc(vm.time).valueOf());
+      }
+    })
+
+
+    .service('DateUtils', function() {
+      this.epochWithoutTimeZoneOffset = epochWithoutTimeZoneOffset;
+
+      function epochWithoutTimeZoneOffset() {
+        return moment().set('minute', moment().get('minute') + moment().utcOffset()).valueOf();
       }
     })
 
