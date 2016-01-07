@@ -21,8 +21,8 @@
       vm.epoch = 1452211200000;
       //vm.epoch = 1452124800000;
       vm.time = new Date();
-      vm.time.setMinutes(vm.time.getMinutes() - vm.time.getTimezoneOffset());
-      //vm.time.setHours(12,0,0,0);
+      //vm.time.setMinutes(vm.time.getMinutes() - vm.time.getTimezoneOffset());
+      vm.time.setHours(12,0,0,0);
       vm.timeZoneOffset = function() {
         return new Date().getTimezoneOffset();
       }
@@ -53,7 +53,8 @@
             return undefined;
           }
           // undo the timezone adjustment we did during the formatting
-          viewValue.setMinutes(viewValue.getMinutes() - viewValue.getTimezoneOffset());
+          //viewValue.setMinutes(viewValue.getMinutes() - viewValue.getTimezoneOffset());
+          viewValue.setHours(12,0,0,0);
           // we want date in Unix timestamp
           return Math.round(new Date(viewValue).getTime());
         });
@@ -65,7 +66,8 @@
           // date constructor will apply timezone deviations from UTC (i.e. if locale is behind UTC 'dt' will be one day behind)
           var dt = new Date(modelValue);
           // 'undo' the timezone offset again (so we end up on the original date again)
-          dt.setMinutes(dt.getMinutes() + dt.getTimezoneOffset());
+          //dt.setMinutes(dt.getMinutes() + dt.getTimezoneOffset());
+          dt.setHours(12,0,0,0);
           return dt;
         });
       }
